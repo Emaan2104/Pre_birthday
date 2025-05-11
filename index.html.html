@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pre-Birthday Surprise</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(to right, #d38312, #a83279);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      color: #e60073;
+    }
+
+    .countdown {
+      font-size: 1.5em;
+      color: #333;
+      margin: 20px 0;
+    }
+
+    .note {
+      font-size: 1.3em;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .emoji {
+      font-size: 2em;
+      margin-top: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>2 Days Left for Something Amazing! 💖</h1>
+    <div class="countdown" id="countdown"></div>
+    <div class="note">A magical surprise awaits you, My Mohtram! 💫</div>
+    <div class="emoji">⏳🎁💌</div>
+  </div>
+
+  <script>
+    // Countdown until May 14
+    const targetDate = new Date('May 14, 2025 00:00:00').getTime();
+    const countdownEl = document.getElementById('countdown');
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      if (timeLeft < 0) {
+        clearInterval(interval);
+        countdownEl.innerHTML = "It's time for the surprise! 🎉";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
